@@ -54,9 +54,9 @@ cd proxy
 node --test
 ```
 
-![Rojo del proxy](capturas/01b_rojo_proxy.png)
+![Rojo del proxy](captura/01b_rojo_proxy.png)
 
-![Proxy en verde: 12 pruebas](capturas/03_proxy_verde.png)
+![Proxy en verde: 12 pruebas](captura/03_proxy_verde.png)
 
 Para usar la IA real: `ANTHROPIC_API_KEY=tu_llave node server.js` (opcionales: `APP_TOKEN`, `MODEL`, `UPSTREAM_URL`).
 
@@ -68,7 +68,7 @@ Para usar la IA real: `ANTHROPIC_API_KEY=tu_llave node server.js` (opcionales: `
 
 Las pruebas de `test/` se escribieron **antes** que el código. Al correr `flutter test` con `lib/` todavía vacía, nada compila:
 
-![Rojo: las pruebas no compilan](capturas/01_rojo_no_compila.png)
+![Rojo: las pruebas no compilan](captura/01_rojo_no_compila.png)
 
 ### 2. ❌ Error real atrapado por una prueba
 
@@ -81,7 +81,7 @@ El PDF del manual muestra `normalizar` así:
 Copiado tal cual no compila, y si se quita esa línea, el teléfono (que escribe `don’t` con apóstrofo tipográfico)
 rompe la comparación: la prueba *"apóstrofo tipográfico"* esperaba `["don't"]` y obtuvo `['don', 't']`:
 
-![Error atrapado por la prueba](capturas/02_error.png)
+![Error atrapado por la prueba](captura/02_error.png)
 
 **Corrección:** convertir explícitamente el apóstrofo tipográfico (U+2019) al normal antes de separar palabras:
 
@@ -93,19 +93,19 @@ rompe la comparación: la prueba *"apóstrofo tipográfico"* esperaba `["don't"]
 
 `flutter analyze` señaló avisos de estilo:
 
-![Analyze con avisos](capturas/03_analyze_avisos.png)
+![Analyze con avisos](captura/03_analyze_avisos.png)
 
 Se corrigieron y se volvió a analizar:
 
-![Analyze limpio](capturas/04_analyze_limpio.png)
+![Analyze limpio](captura/04_analyze_limpio.png)
 
 ### 4. 🟢 VERDE — las 79 pruebas pasan
 
-![Verde: todas las pruebas pasan](capturas/05_verde_pruebas.png)
+![Verde: todas las pruebas pasan](captura/05_verde_pruebas.png)
 
 ### 5. 📦 Compilación del APK
 
-![Compilación del APK](capturas/06_build_apk.png)
+![Compilación del APK](captura/06_build_apk.png)
 
 ---
 
