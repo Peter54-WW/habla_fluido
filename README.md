@@ -33,7 +33,7 @@ llave y compila con `--dart-define=TUTOR_URL=https://tu-servidor/tutor`.
 
 ## 🏗️ Estructura
 
-```
+```text
 habla_fluido/
 ├── lib/dominio/       reglas · nivel · excepciones · comparador (Levenshtein + alineación) · repaso (SM-2)
 │                      progreso (EMA, racha, nivel) · plan_diario · frase · lectura · tutor · voz · almacen
@@ -54,10 +54,6 @@ cd proxy
 node --test
 ```
 
-![Rojo del proxy](captura/01b_rojo_proxy.png)
-
-![Proxy en verde: 12 pruebas](captura/03_proxy_verde.png)
-
 Para usar la IA real: `ANTHROPIC_API_KEY=tu_llave node server.js` (opcionales: `APP_TOKEN`, `MODEL`, `UPSTREAM_URL`).
 
 ---
@@ -66,9 +62,7 @@ Para usar la IA real: `ANTHROPIC_API_KEY=tu_llave node server.js` (opcionales: `
 
 ### 1. 🔴 ROJO — las pruebas se escriben primero y fallan
 
-Las pruebas de `test/` se escribieron **antes** que el código. Al correr `flutter test` con `lib/` todavía vacía, nada compila:
-
-![Rojo: las pruebas no compilan](captura/01_rojo_no_compila.png)
+Las pruebas de `test/` se escribieron **antes** que el código. Al correr `flutter test` con `lib/` todavía vacía, nada compila.
 
 ### 2. ❌ Error real atrapado por una prueba
 
@@ -79,9 +73,7 @@ El PDF del manual muestra `normalizar` así:
 ```
 
 Copiado tal cual no compila, y si se quita esa línea, el teléfono (que escribe `don’t` con apóstrofo tipográfico)
-rompe la comparación: la prueba *"apóstrofo tipográfico"* esperaba `["don't"]` y obtuvo `['don', 't']`:
-
-![Error atrapado por la prueba](captura/02_error.png)
+rompe la comparación: la prueba *"apóstrofo tipográfico"* esperaba `["don't"]` y obtuvo `['don', 't']`.
 
 **Corrección:** convertir explícitamente el apóstrofo tipográfico (U+2019) al normal antes de separar palabras:
 
@@ -91,21 +83,17 @@ rompe la comparación: la prueba *"apóstrofo tipográfico"* esperaba `["don't"]
 
 ### 3. 🔵 REFACTOR — limpiar sin romper nada
 
-`flutter analyze` señaló avisos de estilo:
+`flutter analyze` señaló avisos de estilo.
 
-![Analyze con avisos](captura/03_analyze_avisos.png)
-
-Se corrigieron y se volvió a analizar:
-
-![Analyze limpio](captura/04_analyze_limpio.png)
+Se corrigieron y se volvió a analizar hasta dejar `flutter analyze` limpio.
 
 ### 4. 🟢 VERDE — las 79 pruebas pasan
 
-![Verde: todas las pruebas pasan](captura/05_verde_pruebas.png)
+Las 79 pruebas del proyecto pasan tras completar el ciclo de desarrollo y correcciones.
 
 ### 5. 📦 Compilación del APK
 
-![Compilación del APK](captura/06_build_apk.png)
+El APK de liberación se compila en modo `release` para `android-arm64`.
 
 ---
 
@@ -163,4 +151,3 @@ flutter test
 ```bash
 flutter run
 ```
-
